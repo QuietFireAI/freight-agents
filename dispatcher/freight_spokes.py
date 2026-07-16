@@ -89,7 +89,15 @@ class Spoke13FreightRecords:
         load_key = self._load_key(env)
 
         if env.intent == "record.request":
-            requester_scope = env.payload.get("requester_scope", "general")
+            # Fail closed: an unspecified requester_scope must NOT default
+            # to unrestricted access. The prior default was "general",
+            # which collided with the unrelated entry-scope label
+            # "general" and matched neither the carrier- nor shipper-block
+            # check - meaning an unspecified requester silently saw
+            # everything, including rate/margin data. Now: unspecified
+            # scope is blocked from BOTH carrier- and shipper-scoped
+            # entries by default.
+            requester_scope = env.payload.get("requester_scope", "unspecified")
             dedupe_key = env.payload.get("dedupe_key")
             entries = self.records.get(load_key, [])
 
@@ -115,13 +123,15 @@ class Spoke13FreightRecords:
 
             # General record lookup: rate/margin custody line enforced HERE,
             # at the record, not left to the requester's discretion.
+            # Allow-list, not deny-list: a scoped entry (shipper/carrier)
+            # is visible ONLY to a requester explicitly identified as that
+            # same scope. Anything else - including "unspecified" - is
+            # blocked from BOTH. "general"-scoped entries (non-rate-bearing)
+            # remain visible to everyone regardless of requester_scope.
             visible = []
             blocked_count = 0
             for e in entries:
-                if e["scope"] == "shipper" and requester_scope == "carrier":
-                    blocked_count += 1
-                    continue
-                if e["scope"] == "carrier" and requester_scope == "shipper":
+                if e["scope"] in ("shipper", "carrier") and e["scope"] != requester_scope:
                     blocked_count += 1
                     continue
                 visible.append(e)

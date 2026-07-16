@@ -256,3 +256,37 @@ def test_all_six_pillars_fire_on_freight_traffic(tmp_path):
                       "sleepmark.captured", "splitvantage.review")}
     assert all(v > 0 for v in pillar_events.values()), (
         f"a pillar did not fire on freight's own traffic: {pillar_events}")
+
+
+def test_REGRESSION_unspecified_requester_scope_sees_neither_carrier_nor_shipper(tmp_path):
+    """The actual bug: requester_scope defaulted to 'general', which
+    matched neither the carrier- nor shipper-block condition, so an
+    unspecified requester silently saw rate/margin data from BOTH sides.
+    Must now be blocked from both by default."""
+    hub = make_hub(str(tmp_path))
+    recs = Spoke13FreightRecords(hub)
+    hub.on_turn_start()
+    ctx = "load-reg-001"
+
+    hub.send(Envelope(from_agent="11", to_agent="13", intent="invoice.record",
+                      client_context_id=ctx, payload={"amount": 5000},
+                      provenance={"source": "spoke-11", "captured_at": "runtime",
+                                  "verbatim_available": True}))
+    hub.send(Envelope(from_agent="06", to_agent="13", intent="ratecon.record",
+                      client_context_id=ctx, payload={"rate": 2000},
+                      provenance={"source": "spoke-06", "captured_at": "runtime",
+                                  "verbatim_available": True}))
+
+    # no requester_scope specified at all
+    env = Envelope(from_agent="02", to_agent="13", intent="record.request",
+                  client_context_id=ctx, payload={},
+                  provenance={"source": "spoke-02", "captured_at": "runtime",
+                              "verbatim_available": True})
+    hub.send(env)
+
+    events = hub.audit.read()
+    resp = [e for e in events if e["kind"] == "envelope.persisted"
+           and e["intent"] == "record.response"][-1]
+    assert resp["payload"]["entries"] == [], \
+        "unspecified requester_scope must see neither shipper nor carrier scoped entries"
+    assert resp["payload"]["scope_refused"] == 2
