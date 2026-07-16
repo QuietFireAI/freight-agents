@@ -1,0 +1,17 @@
+{
+ "_status": "UNRATIFIED TEMPLATE - owner must edit, ratify (date + sign-off), then load; loads fail closed while this line stands",
+ "_table": "tracking_cadence",
+ "_purpose": "Check-call cadence per load class",
+ "_fields": [
+  "load_class",
+  "cadence",
+  "dark_threshold"
+ ],
+ "entries": [
+  {
+   "load_class": "<example>",
+   "cadence": "<example>",
+   "dark_threshold": "<example>"
+  }
+ ]
+}

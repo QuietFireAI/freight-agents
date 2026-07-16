@@ -1,0 +1,19 @@
+{
+ "_status": "UNRATIFIED TEMPLATE - owner must edit, ratify (date + sign-off), then load; loads fail closed while this line stands",
+ "_table": "freetime_accessorial_rules",
+ "_purpose": "Free time + accessorial rules per contract side",
+ "_fields": [
+  "contract_ref",
+  "side",
+  "rule",
+  "rate"
+ ],
+ "entries": [
+  {
+   "contract_ref": "<example>",
+   "side": "<example>",
+   "rule": "<example>",
+   "rate": "<example>"
+  }
+ ]
+}

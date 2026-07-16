@@ -1,0 +1,16 @@
+{
+ "_status": "RATIFIED 2026-07-11 - owner sign-off, approved as written",
+ "_doctrine": "JIT run-priority per core doctrine: class 1 = in-motion and statutory (loads in transit with exceptions, cargo-claim clocks, active-carrier compliance lapses), class 2 = lifecycle, settlement, and books. Pacing over braking: the siding scheduler paces class contention; nothing slam-stops, and the in-motion exception lane never waits.",
+ "classes": {
+  "P01": 2,
+  "P02": 1,
+  "P03": 2,
+  "P04": 2,
+  "P05": 1,
+  "P06": 2,
+  "P07": 2,
+  "P08": 1,
+  "P09": 2,
+  "P10": 2
+ }
+}

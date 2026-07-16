@@ -1,0 +1,17 @@
+{
+ "_status": "UNRATIFIED TEMPLATE - owner must edit, ratify (date + sign-off), then load; loads fail closed while this line stands",
+ "_table": "vetting_minimums",
+ "_purpose": "Configured insurance/authority minimums",
+ "_fields": [
+  "item",
+  "minimum",
+  "basis"
+ ],
+ "entries": [
+  {
+   "item": "<example>",
+   "minimum": "<example>",
+   "basis": "<example>"
+  }
+ ]
+}

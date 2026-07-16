@@ -1,0 +1,17 @@
+{
+ "_status": "UNRATIFIED TEMPLATE - owner must edit, ratify (date + sign-off), then load; loads fail closed while this line stands",
+ "_table": "do_not_use_list",
+ "_purpose": "Owner-ratified carrier exclusions",
+ "_fields": [
+  "carrier_id",
+  "reason_ref",
+  "date"
+ ],
+ "entries": [
+  {
+   "carrier_id": "<example>",
+   "reason_ref": "<example>",
+   "date": "<example>"
+  }
+ ]
+}

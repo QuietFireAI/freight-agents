@@ -1,0 +1,17 @@
+{
+ "_status": "UNRATIFIED TEMPLATE - owner must edit, ratify (date + sign-off), then load; loads fail closed while this line stands",
+ "_table": "matching_rules",
+ "_purpose": "Ratified carrier-matching rules",
+ "_fields": [
+  "rule_id",
+  "criteria",
+  "weight"
+ ],
+ "entries": [
+  {
+   "rule_id": "<example>",
+   "criteria": "<example>",
+   "weight": "<example>"
+  }
+ ]
+}
