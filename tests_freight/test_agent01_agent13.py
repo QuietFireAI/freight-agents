@@ -22,11 +22,27 @@ def make_hub(tmp_path, **kw):
     return Hub(Routes(IDENTITY_ROUTES), AuditLog(audit_path), **kw)
 
 
-def signal(ctx, payload, frm="20"):
+def signal(ctx, payload, frm="external"):
     return Envelope(from_agent=frm, to_agent="01", intent="load.signal",
                     client_context_id=ctx, payload=payload,
-                    provenance={"source": "spoke-20", "captured_at": "runtime",
+                    provenance={"source": "external-tender-system", "captured_at": "runtime",
                                 "verbatim_available": True})
+
+
+def test_load_signal_from_nonexistent_agent_20_is_rejected(tmp_path):
+    """The routes.json bug this test guards against: 'load.signal' senders
+    was ['20'] - copy-pasted from listing-agents' Agent 20 (Social Media
+    Monitoring), which doesn't exist anywhere in freight's 14-agent roster.
+    Fixed to sender='external' (2026-07-16). This test proves agent '20'
+    specifically no longer works, since '20' isn't a real freight agent and
+    never should have been legal."""
+    hub = make_hub(str(tmp_path))
+    Spoke13FreightRecords(hub)
+    Spoke01LoadIntake(hub, service_scope={"electronics", "produce"})
+    hub.on_turn_start()
+
+    result = hub.send(signal("load-bad-sender", {"commodity": "electronics"}, frm="20"))
+    assert result["status"] not in ("ack", "held")
 
 
 def test_complete_tender_flows_through_to_load_captured(tmp_path):

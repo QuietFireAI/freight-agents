@@ -54,6 +54,7 @@ Dispatcher returns an `ack`.
 
 | Direction | Route (via 00) | Trigger | Intent |
 |---|---|---|---|
+| IN | ← external (EDI/email/portal/phone-transcript tender systems) | Shipper load tender | `load.signal` |
 | OUT | → 02 Load Pipeline | Complete load tenders | `load.captured` |
 | OUT | → 13 Freight Records | Record lookups | `record.request` |
 | IN | ← 13 Freight Records | Record responses | `record.response` |

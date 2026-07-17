@@ -5,7 +5,7 @@
   {
    "intent": "load.signal",
    "senders": [
-    "20"
+    "external"
    ],
    "receivers": [
     "01"
