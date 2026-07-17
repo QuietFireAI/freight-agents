@@ -204,6 +204,41 @@ def test_rate_margin_custody_line_enforced_at_record(tmp_path):
     assert resp["payload"]["entries"] == []
 
 
+# ------------------------------------- THE FIX: material-fact conflicts
+def test_conflicting_values_across_entries_flagged_not_silently_reconciled(tmp_path):
+    """Was: zero implementing code - the class docstring claimed this
+    tuple but nothing ever compared entries for disagreement. 'Both
+    stand' was trivially true (append-only never overwrites), but
+    nothing was ever actually flagged to a requester."""
+    hub = make_hub(str(tmp_path))
+    Spoke13FreightRecords(hub)
+    hub.on_turn_start()
+    ctx = "load-008"
+
+    hub.send(Envelope(from_agent="01", to_agent="13", intent="interaction.log",
+                      client_context_id=ctx, payload={"kind": "load.captured",
+                                                      "weight": 42000},
+                      provenance={"source": "spoke-01", "captured_at": "runtime",
+                                  "verbatim_available": True}))
+    hub.send(Envelope(from_agent="07", to_agent="13", intent="track.status",
+                      client_context_id=ctx, payload={"weight": 44500},
+                      provenance={"source": "spoke-07", "captured_at": "runtime",
+                                  "verbatim_available": True}))
+
+    hub.send(Envelope(from_agent="06", to_agent="13", intent="record.request",
+                      client_context_id=ctx, payload={"requester_scope": "general"},
+                      provenance={"source": "spoke-06", "captured_at": "runtime",
+                                  "verbatim_available": True}))
+    events = hub.audit.read()
+    resp = [e for e in events if e["kind"] == "envelope.persisted"
+           and e["intent"] == "record.response"][-1]
+    assert "weight" in resp["payload"]["conflicts"], \
+        "differing weight values across entries must be flagged as a conflict"
+    values = {o["value"] for o in resp["payload"]["conflicts"]["weight"]}
+    assert values == {42000, 44500}, "both values must stand, neither silently picked"
+    assert len(resp["payload"]["entries"]) == 2, "both entries must still be returned"
+
+
 def test_all_six_pillars_fire_on_freight_traffic(tmp_path):
     """Same assertion the listing P11 demo makes, done for real: every
     pillar seam must fire on THIS identity's traffic, not just listing's.

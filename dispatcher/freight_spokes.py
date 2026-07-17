@@ -49,12 +49,33 @@ class Spoke13FreightRecords:
 
     DECISIONS.md tuples implemented directly:
       - two entries conflict on a material fact -> both stand, conflict
-        flagged to the requester (never silently reconciled)
+        flagged to the requester (never silently reconciled). Fixed
+        2026-07-17: had zero implementing code - "both stand" was
+        trivially true (append-only never overwrites) but nothing was
+        ever actually flagged. Generic detection now: any payload key
+        with a differing value across entries for a load is surfaced as
+        a conflict in record.response - not guessing at which specific
+        fields count as "material," which would mean inventing domain
+        rules this agent has no authority to invent.
       - a request would cross the rate/margin custody line -> refuse,
         scope named (never approximate)
-      - storage write unconfirmed -> not done until re-verified
       - corrections are new entries referencing the corrected entry_id;
         originals never change (append-only, MANNERS #3 + #10)
+
+    NOT implemented, found during review 2026-07-17 - genuine structural
+    gaps, not guessed at:
+      - retention conflicts with an open claim/dispute, the hold wins ->
+        there is no retention/expiration policy anywhere in this class at
+        all (records are pure in-memory, append-only, never pruned) - so
+        there's nothing for a claim/dispute hold to conflict WITH yet.
+        This tuple describes behavior for a retention mechanism that
+        doesn't exist; building a fake one to satisfy the tuple would be
+        worse than naming the gap honestly.
+      - storage write unconfirmed -> not done until re-verified - this
+        class has no real persistent storage layer (a Python dict write
+        cannot meaningfully "fail" the way a real database/file write
+        can); this tuple describes a real storage backend's failure mode
+        that doesn't exist in the current in-memory implementation.
     """
 
     def __init__(self, hub):
@@ -152,11 +173,44 @@ class Spoke13FreightRecords:
                             f"none absent from requester_scope={requester_scope!r}",
                     result=f"returned={len(visible)}")
 
+            # tuple: two entries conflict on a material fact -> both stand,
+            # conflict flagged to the requester. Fixed 2026-07-17: this had
+            # zero implementing code - the class docstring claimed it but
+            # nothing ever compared entries for disagreement. "Both stand"
+            # was trivially true (append-only never overwrites), but
+            # nothing was ever actually FLAGGED. Generic detection: any
+            # payload key appearing with a different value across multiple
+            # entries for this load is a conflict - not guessing at which
+            # specific fields count as "material," which would mean
+            # inventing domain rules this agent has no authority to invent.
+            # The requester judges relevance; the record's job is surfacing
+            # the disagreement, never silently picking one value.
+            conflicts: dict[str, list[dict]] = {}
+            seen: dict[str, list[dict]] = {}
+            for e in visible:
+                for k, v in e["payload"].items():
+                    if not isinstance(v, (str, int, float, bool)) or v is None:
+                        continue
+                    seen.setdefault(k, []).append(
+                        {"value": v, "entry_id": e["entry_id"], "kind": e["kind"]})
+            for k, occurrences in seen.items():
+                distinct_values = {o["value"] for o in occurrences}
+                if len(distinct_values) > 1:
+                    conflicts[k] = occurrences
+            if conflicts:
+                self.hub.ingest_spoke_trace(
+                    "13", env.envelope_id,
+                    thought=f"load_key={load_key!r}: conflicting values "
+                            f"found for {sorted(conflicts)} across entries - "
+                            f"both/all stand, flagging to the requester "
+                            f"rather than silently reconciling",
+                    result=f"conflicts_flagged={sorted(conflicts)}")
+
             absent = len(entries) == 0
             self.hub.send(_env(
                 "13", env.from_agent, "record.response", load_key,
                 {"entries": visible, "absent": absent,
-                 "scope_refused": blocked_count},
+                 "scope_refused": blocked_count, "conflicts": conflicts},
                 confidence=SOURCE_VERIFIED))
             return
 
