@@ -18,5 +18,6 @@ constrains everything.
 - (carrier asks for more money mid-transit, route verbatim; renegotiation-in-motion is the broker's, on signed authority)
 - (shipper asks who the carrier is, answer per the configured disclosure rule; disclosure is config)
 - (a reply contains claim admissions language, route to 09 and human verbatim; the comms lane never confirms fault)
+- (accident, breakdown, injury, or hazmat language appears in any carrier or driver message, carrier.incident.notice verbatim same turn to human, 09, 12, 13, 14; no scripting, no fault language, no coaching - the handoff carries the words)
 
 (Root rule, restated: no suitable tuple - or an uncertain match - means STOP and ask the human.)

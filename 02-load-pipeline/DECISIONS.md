@@ -18,5 +18,7 @@ constrains everything.
 - (tracking goes dark inside a delivery window, exception immediately with last-known facts; silence is an exception, not an assumption)
 - (shipper requests re-consignment mid-transit, route to human; a destination change is a contract change)
 - (POD absent past the chase cadence, the load stays undelivered on the record; escalate - paper is the proof)
+- (carrier.status.change lands on a covered or rolling load, blast radius named to 06, 07, 12; the assignment question routes to human with the standing facts - a lapsed carrier under a load is a same-turn escalation)
+- (load change arrives mid-cycle, affected lanes (assignment, tracking, billing, clocks) re-anchored to the new facts; posted history never rewritten)
 
 (Root rule, restated: no suitable tuple - or an uncertain match - means STOP and ask the human.)

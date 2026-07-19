@@ -18,5 +18,7 @@ constrains everything.
 - (carrier accepts then demands a higher rate pre-pickup, the renege is a fact to human; the record holds the signed terms)
 - (duplicate authority envelope, execute once; envelope_id idempotency)
 - (vet result is older than the staleness rule at execution, re-vet before the record executes; assignment on a stale vet is the named failure)
+- (carrier.status.change received for the assigned carrier, assignment posture re-checked; any new tender to that carrier holds pending human direction - the ratecon already signed is a human question, not an auto-cancel)
+- (load.change.notice affects a signed ratecon, the delta routes to human; changed terms against a signed ratecon are a re-negotiation, never a silent amendment)
 
 (Root rule, restated: no suitable tuple - or an uncertain match - means STOP and ask the human.)

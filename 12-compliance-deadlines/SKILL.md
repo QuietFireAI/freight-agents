@@ -60,6 +60,10 @@ Dispatcher returns an `ack`.
 | OUT | → 04 Communication | Expiry notices to carriers | `message.request` |
 | OUT | → 13 Freight Records | Record lookups | `record.request` |
 | IN | ← 13 Freight Records | Record responses | `record.response` |
+| IN | ← 03 | Carrier standing change - compliance clocks re-derived | `carrier.status.change` |
+| IN | ← 01 / 02 | Load change - appointment and filing clocks re-anchored | `load.change.notice` |
+| IN | ← 04 / 07 | Incident - regulatory clocks armed (DOT/hazmat where applicable) | `carrier.incident.notice` |
+| IN | ← 13 | Records disclosure pending - response clock armed | `records.disclosure.package` |
 
 This agent has no other edges. If a task appears to require any other
 communication path, that is an ambiguity condition (section 6) - stop and ask

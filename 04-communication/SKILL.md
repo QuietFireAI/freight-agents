@@ -58,6 +58,7 @@ Dispatcher returns an `ack`.
 | OUT | → shippers/carriers/drivers (external) | Approved sends | `message.send` |
 | OUT | → 02 / 07 / 09 | Replies routed by content | `message.reply` |
 | OUT | → 13 Freight Records | Every send/reply verbatim | `interaction.log` |
+| OUT | → human / 09 / 12 / 13 / 14 | Incident reported in carrier channel (accident, breakdown, hazmat) - verbatim, same turn | `carrier.incident.notice` |
 
 This agent has no other edges. If a task appears to require any other
 communication path, that is an ambiguity condition (section 6) - stop and ask

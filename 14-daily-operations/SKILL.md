@@ -57,6 +57,8 @@ Dispatcher returns an `ack`.
 | OUT | → human | Morning book / EOD books | `report.package` |
 | OUT | → 13 Freight Records | Record pulls | `record.request` |
 | IN | ← 13 Freight Records | Chronologies, exceptions | `record.response` |
+| IN | ← any | Wait-state visibility past threshold | `agent.status` |
+| IN | ← 04 / 07 | Incidents - ops visibility same turn | `carrier.incident.notice` |
 
 This agent has no other edges. If a task appears to require any other
 communication path, that is an ambiguity condition (section 6) - stop and ask

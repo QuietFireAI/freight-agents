@@ -61,6 +61,8 @@ Dispatcher returns an `ack`.
 | OUT | → 04 Communication | Rate cons + confirmations (terms as authorized) | `message.request` |
 | OUT | → 13 Freight Records | Record lookups | `record.request` |
 | IN | ← 13 Freight Records | Record responses | `record.response` |
+| IN | ← 03 | Carrier standing change - assignment posture re-checked | `carrier.status.change` |
+| IN | ← 01 / 02 | Load change affecting the assignment | `load.change.notice` |
 
 This agent has no other edges. If a task appears to require any other
 communication path, that is an ambiguity condition (section 6) - stop and ask

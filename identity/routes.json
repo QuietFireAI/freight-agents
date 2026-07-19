@@ -1,5 +1,5 @@
 {
- "version": "0.1",
+ "version": "0.2",
  "vertical": "freight-brokerage-agent",
  "routes": [
   {
@@ -343,6 +343,85 @@
    ],
    "receivers": [
     "queue"
+   ]
+  },
+  {
+   "intent": "agent.status",
+   "senders": [
+    "any"
+   ],
+   "receivers": [
+    "14"
+   ]
+  },
+  {
+   "intent": "reconciliation.exception",
+   "senders": [
+    "10",
+    "11"
+   ],
+   "receivers": [
+    "human",
+    "13"
+   ]
+  },
+  {
+   "intent": "carrier.status.change",
+   "senders": [
+    "03"
+   ],
+   "receivers": [
+    "02",
+    "06",
+    "12",
+    "13"
+   ]
+  },
+  {
+   "intent": "load.change.notice",
+   "senders": [
+    "01",
+    "02"
+   ],
+   "receivers": [
+    "06",
+    "07",
+    "11",
+    "12",
+    "13"
+   ]
+  },
+  {
+   "intent": "carrier.incident.notice",
+   "senders": [
+    "04",
+    "07"
+   ],
+   "receivers": [
+    "human",
+    "09",
+    "12",
+    "13",
+    "14"
+   ]
+  },
+  {
+   "intent": "claim.disposition",
+   "senders": [
+    "human"
+   ],
+   "receivers": [
+    "09"
+   ]
+  },
+  {
+   "intent": "records.disclosure.package",
+   "senders": [
+    "13"
+   ],
+   "receivers": [
+    "human",
+    "12"
    ]
   },
   {

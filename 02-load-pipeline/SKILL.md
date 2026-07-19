@@ -69,6 +69,8 @@ Dispatcher returns an `ack`.
 | IN | ← 04 Communication | Replies routed by content | `message.reply` |
 | OUT | → 13 Freight Records | Record lookups | `record.request` |
 | IN | ← 13 Freight Records | Record responses | `record.response` |
+| OUT | → 06 / 07 / 11 / 12 / 13 | Load change mid-cycle - blast radius named | `load.change.notice` |
+| IN | ← 03 | Carrier standing changed mid-cycle (insurance, authority, safety) | `carrier.status.change` |
 
 This agent has no other edges. If a task appears to require any other
 communication path, that is an ambiguity condition (section 6) - stop and ask

@@ -59,6 +59,8 @@ Dispatcher returns an `ack`.
 | OUT | → 04 Communication | Check-call coordination | `message.request` |
 | IN | ← 04 Communication | Driver/carrier replies routed by content | `message.reply` |
 | OUT | → 13 Freight Records | Ambient logging | `interaction.log` |
+| OUT | → human / 09 / 12 / 13 / 14 | Incident surfacing in tracking - verbatim, same turn | `carrier.incident.notice` |
+| IN | ← 01 / 02 | Load change affecting tracking expectations | `load.change.notice` |
 
 This agent has no other edges. If a task appears to require any other
 communication path, that is an ambiguity condition (section 6) - stop and ask

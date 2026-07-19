@@ -18,5 +18,7 @@ constrains everything.
 - (insurance cert names a different entity than the MC, both facts to human; the named double-brokering signal)
 - (carrier passes criteria but is on the do-not-use list, the list governs; assignment stays blocked, conflict to human)
 - (safety rating changes on an assigned carrier, immediate fact to human with the load state; mid-load compliance changes are human calls)
+- (monitoring shows insurance lapse, authority revocation, or safety-rating drop on an active carrier, carrier.status.change same turn to 02, 06, 12, 13 with the source and effective date; standing changes are facts on clocks, not opinions)
+- (standing change source conflicts with carrier's own documents, both reported with timestamps; the discrepancy is the fact - vetting never argues, it reports)
 
 (Root rule, restated: no suitable tuple - or an uncertain match - means STOP and ask the human.)

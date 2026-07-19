@@ -1,5 +1,5 @@
 {
- "_status": "RATIFIED 2026-07-11 - owner sign-off, approved as written",
+ "_status": "RATIFIED 2026-07-11 - owner sign-off, approved as written; P11-P14 classes added and ratified 2026-07-18 (owner: Jeff Phillips) - P11/P12 class 1: lapsed carrier under a load and incidents are same-turn",
  "_doctrine": "JIT run-priority per core doctrine: class 1 = in-motion and statutory (loads in transit with exceptions, cargo-claim clocks, active-carrier compliance lapses), class 2 = lifecycle, settlement, and books. Pacing over braking: the siding scheduler paces class contention; nothing slam-stops, and the in-motion exception lane never waits.",
  "classes": {
   "P01": 2,
@@ -11,6 +11,10 @@
   "P07": 2,
   "P08": 1,
   "P09": 2,
-  "P10": 2
+  "P10": 2,
+  "P11": 1,
+  "P12": 1,
+  "P13": 2,
+  "P14": 2
  }
 }

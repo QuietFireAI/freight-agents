@@ -62,6 +62,8 @@ Dispatcher returns an `ack`.
 | IN | ← 12 Compliance & Deadlines | Billing-term aging alerts | `deadline.alert` |
 | OUT | → 13 Freight Records | Record lookups | `record.request` |
 | IN | ← 13 Freight Records | Record responses | `record.response` |
+| OUT | → human / 13 | Invoice books variance - $0.00 tolerance, human notified | `reconciliation.exception` |
+| IN | ← 01 / 02 | Load change affecting billable terms | `load.change.notice` |
 
 This agent has no other edges. If a task appears to require any other
 communication path, that is an ambiguity condition (section 6) - stop and ask

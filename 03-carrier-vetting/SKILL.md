@@ -59,6 +59,7 @@ Dispatcher returns an `ack`.
 | IN | ← 12 Compliance & Deadlines | Insurance/authority expiry alerts | `deadline.alert` |
 | OUT | → 13 Freight Records | Record lookups | `record.request` |
 | IN | ← 13 Freight Records | Record responses | `record.response` |
+| OUT | → 02 / 06 / 12 / 13 | Mid-cycle vetting change: insurance lapse, authority revocation, safety rating | `carrier.status.change` |
 
 This agent has no other edges. If a task appears to require any other
 communication path, that is an ambiguity condition (section 6) - stop and ask

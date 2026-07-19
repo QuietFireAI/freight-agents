@@ -18,5 +18,7 @@ constrains everything.
 - (EOD sweep finds an untouched morning item, miss named with its owner; the sweep never reassigns)
 - (human unreachable at book time, publish to the queue and hold)
 - (a dark-tracking exception spans the book boundary, it leads both books until resolved; exceptions never age into footnotes)
+- (agent.status reports a wait past threshold, named in report.package with age and blocking party; the morning report carries every wait)
+- (carrier.incident.notice received, ops visibility same turn; the daily book carries the incident and its open clocks until closed)
 
 (Root rule, restated: no suitable tuple - or an uncertain match - means STOP and ask the human.)

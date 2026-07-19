@@ -8,7 +8,7 @@ defect, not a change.
 
 ## Manifest (generated)
 - Agents: 15 (00-dispatcher + 14 spokes)
-- Routes: 31 entries, 31 distinct intents
+- Routes: 39 entries, 39 distinct intents
 - Playbooks: P01-P10 (playbooks/)
 - Layer stack: MANNERS.md → DISPATCHER_CORE.md → identity/ → DECISIONS.md
   (per agent) → playbooks/ → agent SKILL.md files
@@ -50,7 +50,7 @@ defect, not a change.
 - 12 Compliance & Deadlines Agent
 - 13 Freight Records Agent
 - 14 Daily Operations Agent
-- Intents: `accessorial.record`, `adjust.authority`, `carrier.vet.request`, `carrier.vet.result`, `carrierpay.record`, `claim.intake`, `claim.package`, `clarification.request`, `compliance.hold`, `config.update`, `deadline.alert`, `detention.record`, `doc.received`, `doc.request`, `escalation.*`, `integrity.violation`, `interaction.log`, `invoice.record`, `load.assign`, `load.captured`, `message.reply`, `message.request`, `message.send`, `pay.authority`, `ratecon.authority`, `ratecon.record`, `record.request`, `record.response`, `report.package`, `track.request`, `track.status`
+- Intents: `accessorial.record`, `adjust.authority`, `agent.status`, `carrier.incident.notice`, `carrier.status.change`, `carrier.vet.request`, `carrier.vet.result`, `carrierpay.record`, `claim.disposition`, `claim.intake`, `claim.package`, `clarification.request`, `compliance.hold`, `config.update`, `deadline.alert`, `detention.record`, `doc.received`, `doc.request`, `escalation.*`, `integrity.violation`, `interaction.log`, `invoice.record`, `load.assign`, `load.captured`, `load.change.notice`, `load.signal`, `message.reply`, `message.request`, `message.send`, `pay.authority`, `ratecon.authority`, `ratecon.record`, `reconciliation.exception`, `record.request`, `record.response`, `records.disclosure.package`, `report.package`, `track.request`, `track.status`
 
 ## Swarm-level decision tuples (predictable scenarios, pre-deliberated)
 - (two playbooks match one trigger, run neither; clarification.request naming both)

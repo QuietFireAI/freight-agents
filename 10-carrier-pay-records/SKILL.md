@@ -63,6 +63,7 @@ Dispatcher returns an `ack`.
 | OUT | → 04 Communication | Settlement status messages | `message.request` |
 | OUT | → 13 Freight Records | Record lookups | `record.request` |
 | IN | ← 13 Freight Records | Record responses | `record.response` |
+| OUT | → human / 13 | Carrier-pay books variance - $0.00 tolerance, human notified | `reconciliation.exception` |
 
 This agent has no other edges. If a task appears to require any other
 communication path, that is an ambiguity condition (section 6) - stop and ask

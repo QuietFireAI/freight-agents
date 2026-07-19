@@ -18,5 +18,7 @@ constrains everything.
 - (facility disputes the recorded arrival time, both timestamps stand; detention runs conservative until the human resolves)
 - (tracking dark past threshold on a high-value load, exception immediately, escalation class raised; value raises urgency, never assumptions)
 - (driver reports a breakdown, facts to 02 and human immediately; recovery decisions are the broker's)
+- (incident language surfaces in tracking updates, carrier.incident.notice verbatim same turn; tracking continues as facts - the incident lane and the tracking lane both run)
+- (load.change.notice changes appointment expectations, tracking re-anchored; the old and new windows both on record - a moved appointment is a fact with a timestamp)
 
 (Root rule, restated: no suitable tuple - or an uncertain match - means STOP and ask the human.)

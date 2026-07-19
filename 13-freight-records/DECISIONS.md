@@ -18,5 +18,7 @@ constrains everything.
 - (a request would cross the rate/margin custody line, refuse with the scope named)
 - (retention conflicts with an open claim or dispute, the hold wins; escalate)
 - (storage write unconfirmed, not done until re-verified; unconfirmed is reported failed)
+- (external records request arrives (shipper audit, insurer, subpoena), assemble the disclosure inventory - existence, type, date, source only - records.disclosure.package to human and 12; release is a human decision, itemized)
+- (carrier.incident.notice received, logged verbatim with source and timestamp; the record is the incident's spine)
 
 (Root rule, restated: no suitable tuple - or an uncertain match - means STOP and ask the human.)

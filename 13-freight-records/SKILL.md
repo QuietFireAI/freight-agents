@@ -65,6 +65,11 @@ Dispatcher returns an `ack`.
 | IN | ← 09 Claims & OSD | Claim packages (audit) | `claim.package` |
 | IN | ← 10 Carrier Pay Records | Settlement records | `carrierpay.record` |
 | IN | ← 11 Shipper Invoicing | Invoice records | `invoice.record` |
+| OUT | → human / 12 | Disclosure inventory (existence/type/date/source only) for human release | `records.disclosure.package` |
+| IN | ← 03 | Carrier standing changes on the record | `carrier.status.change` |
+| IN | ← 01 / 02 | Load changes on the record | `load.change.notice` |
+| IN | ← 04 / 07 | Incident notices on the record (verbatim) | `carrier.incident.notice` |
+| IN | ← 10 / 11 | Reconciliation exceptions (books copy) | `reconciliation.exception` |
 
 This agent has no other edges. If a task appears to require any other
 communication path, that is an ambiguity condition (section 6) - stop and ask

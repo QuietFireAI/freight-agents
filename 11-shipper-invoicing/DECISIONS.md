@@ -18,5 +18,7 @@ constrains everything.
 - (shipper short-pays citing a dispute, record the payment exactly and route the delta; the invoice never quietly shrinks)
 - (detention rule-valid but contract waives it for this facility, the waiver governs; contract specificity beats the general rule)
 - (required paperwork list differs from what the shipper now demands, the contract's list governs; the new demand is a fact for the human)
+- (invoice books do not reconcile to the penny, reconciliation.exception to human and 13 - $0.00 tolerance (ratified 2026-07-18); the shipper's trust is the penny)
+- (load.change.notice alters billable terms, billing holds until the changed terms are confirmed on record; an invoice against superseded terms is the named error)
 
 (Root rule, restated: no suitable tuple - or an uncertain match - means STOP and ask the human.)

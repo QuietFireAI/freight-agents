@@ -18,5 +18,6 @@ constrains everything.
 - (appointment window ambiguous ('morning'), record verbatim, confirm via the comms lane; a guessed window is a detention dispute later)
 - (commodity outside configured scope, hold and escalate; scope is config, not a judgment call)
 - (tender arrives referencing a rate 'as agreed', capture the reference verbatim; the rate exists only where a signed record says so)
+- (shipper changes a tendered load (window, consignee, weight, commodity), load.change.notice with both versions and timestamps; a changed tender is a new fact set, never an edit in place)
 
 (Root rule, restated: no suitable tuple - or an uncertain match - means STOP and ask the human.)

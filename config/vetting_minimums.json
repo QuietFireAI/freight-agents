@@ -1,5 +1,5 @@
 {
- "_status": "UNRATIFIED TEMPLATE - owner must edit, ratify (date + sign-off), then load; loads fail closed while this line stands",
+ "_status": "UNRATIFIED TEMPLATE - owner must edit, ratify (date + sign-off), then load; loads fail closed while this line stands | DOCTRINE RATIFIED 2026-07-18 (owner: Jeff Phillips); minimums are deployment content",
  "_table": "vetting_minimums",
  "_purpose": "Configured insurance/authority minimums",
  "_fields": [
@@ -13,5 +13,6 @@
    "minimum": "<example>",
    "basis": "<example>"
   }
- ]
+ ],
+ "_doctrine": "STANDING IS A LIVE FACT (ratified 2026-07-18): vetting is not a gate passed once - insurance, authority, and safety standing are monitored facts on clocks; a mid-cycle change fires carrier.status.change same turn (P11). A signed ratecon is never auto-cancelled on a standing change - disposition is human."
 }

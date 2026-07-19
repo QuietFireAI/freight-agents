@@ -54,10 +54,11 @@ Dispatcher returns an `ack`.
 
 | Direction | Route (via 00) | Trigger | Intent |
 |---|---|---|---|
-| IN | ← external (EDI/email/portal/phone-transcript tender systems) | Shipper load tender | `load.signal` |
+| IN | ← external | Tender/availability signals (EDI, email, portal, phone transcript) | `load.signal` |
 | OUT | → 02 Load Pipeline | Complete load tenders | `load.captured` |
 | OUT | → 13 Freight Records | Record lookups | `record.request` |
 | IN | ← 13 Freight Records | Record responses | `record.response` |
+| OUT | → 06 / 07 / 11 / 12 / 13 | Shipper changes the tendered load (window, consignee, weight, commodity) | `load.change.notice` |
 
 This agent has no other edges. If a task appears to require any other
 communication path, that is an ambiguity condition (section 6) - stop and ask

@@ -18,5 +18,7 @@ constrains everything.
 - (carrier disputes the OSD facts, both versions verbatim in the package; the package argues nothing)
 - (claim clock lead-time arrives with evidence outstanding, package ships with gaps NAMED inside the clock)
 - (shipper deducts a claim from payment unilaterally, record the deduction exactly and route; offset is a legal question)
+- (signed claim.disposition received, recorded verbatim; the claim closes per the direction - paid, denied, subrogated, or withdrawn - a claim's ending is signed or it has not ended)
+- (carrier.incident.notice arrives, claims posture arms: preservation flags set, evidence custody named; no liability statement to anyone - arming is not accusing)
 
 (Root rule, restated: no suitable tuple - or an uncertain match - means STOP and ask the human.)

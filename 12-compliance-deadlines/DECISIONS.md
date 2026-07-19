@@ -18,5 +18,8 @@ constrains everything.
 - (two claim-notice windows plausibly apply, the shorter alerts; conservatism ratified)
 - (a certain miss emerges, escalate immediately, quantified; early certainty is compliance)
 - (a rule change is announced but not ratified into the table, alert with the delta; the table changes only by ratification)
+- (carrier.status.change received, compliance clocks re-derived from the standing facts; conservatism rule - the earlier date wins)
+- (carrier.incident.notice received, regulatory clocks armed where applicable (DOT, hazmat release, injury reporting) with lead-time alerts; the swarm arms clocks, humans make filings)
+- (records.disclosure.package pending past lead-time, deadline.alert; a records-response clock is a clock like any other)
 
 (Root rule, restated: no suitable tuple - or an uncertain match - means STOP and ask the human.)

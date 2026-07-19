@@ -18,5 +18,6 @@ constrains everything.
 - (factoring NOA arrives mid-load, pay redirection is a human-confirmed change; changed-payee freeze mirrors the wire-fraud rule)
 - (POD present but unsigned, the gate stays closed with the defect named; defective is not received)
 - (signed pay authority references a settled load, hold and re-confirm; a second payment on a settled load is the duplicate-pay line)
+- (carrier-pay books do not reconcile to the penny, reconciliation.exception to human and 13 - $0.00 tolerance (ratified 2026-07-18); 'close enough' is the named breach)
 
 (Root rule, restated: no suitable tuple - or an uncertain match - means STOP and ask the human.)

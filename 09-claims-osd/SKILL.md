@@ -62,6 +62,8 @@ Dispatcher returns an `ack`.
 | IN | ← 12 Compliance & Deadlines | Filing-clock alerts | `deadline.alert` |
 | OUT | → 13 Freight Records | Record lookups | `record.request` |
 | IN | ← 13 Freight Records | Record responses | `record.response` |
+| IN | ← human | Signed claim disposition - a claim never dies quietly | `claim.disposition` |
+| IN | ← 04 / 07 | Incident notices arming the claims posture | `carrier.incident.notice` |
 
 This agent has no other edges. If a task appears to require any other
 communication path, that is an ambiguity condition (section 6) - stop and ask

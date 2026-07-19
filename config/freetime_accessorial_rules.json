@@ -1,5 +1,5 @@
 {
- "_status": "UNRATIFIED TEMPLATE - owner must edit, ratify (date + sign-off), then load; loads fail closed while this line stands",
+ "_status": "UNRATIFIED TEMPLATE - owner must edit, ratify (date + sign-off), then load; loads fail closed while this line stands | DOCTRINE RATIFIED 2026-07-18 (owner: Jeff Phillips); rule entries are deployment content - empty is fail-closed by structure",
  "_table": "freetime_accessorial_rules",
  "_purpose": "Free time + accessorial rules per contract side",
  "_fields": [
@@ -15,5 +15,6 @@
    "rule": "<example>",
    "rate": "<example>"
   }
- ]
+ ],
+ "_doctrine": "ZERO-THRESHOLD RULE (ratified 2026-07-18, permeates all identity blueprints): accessorials and adjustments matching a loaded, ratified rule apply automatically with the rule cited; ANY money beyond rules, ANY amount, moves only on signed authority (pay.authority / adjust.authority). No de-minimis lane. Books reconciliation tolerance is $0.00 on both carrier-pay and shipper-invoice sides - any variance is reconciliation.exception to the human; 'close enough' is the named breach."
 }
